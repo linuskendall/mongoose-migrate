@@ -6,7 +6,7 @@
   , "author": "Buu Nguyen <buunguyen@gmail.com>"
   , "contributors": "Linus Kendall <me@linuskendall.com>"
   , "repository": "git://github.com/linuskendall/mongoose-migrate"
-  , "bin": { "mongoose-migrate-2": "./bin/migrate" }
+  , "bin": { "mongoose-migrate-3": "./bin/migrate" }
   , "dependencies" : {
       "mongoose": "^4.2.0"
     }
