@@ -1,24 +1,25 @@
-## mongoose-migrate-2
+## mongoose-migrate-3
 
 Node.js migration framework that uses MongoDB to keep track of migrations.
 
 [![NPM](https://nodei.co/npm/mongoose-migrate-2.png?compact=true)](https://www.npmjs.com/package/mongoose-migrate-2)
 
-This is a fork of [madhums/mongoose-migrate](https://github.com/madhums/mongoose-migrate) with two changes:
+This is a fork of [buunguyen/mongoose-migrate](https://github.com/buunguyen/mongoose-migrate) which in turn is a fork of [madhums/mongoose-migrate](https://github.com/madhums/mongoose-migrate) with one major change:
 
-* Eliminate the need to configure Mongoose schema and model name. Model is automatically named `Migration`.
-* Config file is a Node module. This enables things like reading database URLs from environment variables instead of hard-coding in the JSON file.
+* Change config file to contain a connection object, rather than a connection string in order to allow custom MongoDB options
+* Move the Migration model in to a separate file to ensure it is only defined once
 
 ## Configuration
 
-Create a config file with one database URL for each node environment, i.e. `process.env.NODE_ENV`.
+Create a config file which handles your database connection logic and returns the mongoose connection to use:
 
 ```js
 // Path : ./migrations/config.js
+const mongoose = require('mongoose');
+mongoose.connect(MY_CONNECT_STRING)
+
 module.exports = {
-  development : devDbUrl,
-  test        : testDbUrl,
-  production  : prodDbUrl
+  db: mongoose // or mongoose.createConnection(MY_CONNECT_STRING)
 }
 ```
 
